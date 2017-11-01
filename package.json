@@ -1,0 +1,33 @@
+{
+  "name": "charley-praise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charleylla/charley-praise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charleylla/charley-praise/issues"
+  },
+  "homepage": "https://github.com/charleylla/charley-praise#readme",
+  "dependencies": {
+    "systemjs": "^0.20.19"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4"
+  }
+}

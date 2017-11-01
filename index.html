@@ -6,8 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>charley-parise</title>
     <link rel="stylesheet" href="./main.css">
+    <!-- <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script>
+        System.import("./build/utils.js");
+        console.log(throttle)
+    </script> -->
 </head>
 <body>
-    
+    <section>
+        <div class="main">
+            <div class="finger"></div>
+            <div class="finger"></div>
+        </div>
+    </section>
+    <script src="./build/utils.js"></script>
+    <script src="./build/main.js"></script>
+    <script>
+        const box = document.querySelector("section");
+        const palm = document.querySelector(".main");
+        const praise = new Praise(box,palm)
+    </script>
 </body>
 </html>
