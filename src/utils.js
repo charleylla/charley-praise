@@ -1,10 +1,16 @@
-function throttle(fn,delay){
-    let startTime = 0;
-    return (...args)=>{
-        let timeNow = +new Date();
-        if(timeNow - startTime >= delay){
-            fn(...args);
-            startTime = timeNow;
+window.Utils = (function(){
+    function throttle(fn,delay){
+        let startTime = 0;
+        return (...args)=>{
+            let timeNow = +new Date();
+            if(timeNow - startTime >= delay){
+                fn(...args);
+                startTime = timeNow;
+            }
         }
     }
-}
+    return{
+        throttle
+    }
+}())
+

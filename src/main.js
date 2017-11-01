@@ -8,7 +8,7 @@ class Praise{
     
     _init(){
         this.bindEvents = this.bindEvents.bind(this)
-        this.clickHander = throttle(this.clickHander.bind(this),1000);
+        this.clickHander = Utils.throttle(this.clickHander.bind(this),1000);
         this.callCollection = this.callCollection.bind(this)
     }
 

@@ -18,7 +18,7 @@ var Praise = function () {
         key: "_init",
         value: function _init() {
             this.bindEvents = this.bindEvents.bind(this);
-            this.clickHander = throttle(this.clickHander.bind(this), 1000);
+            this.clickHander = Utils.throttle(this.clickHander.bind(this), 1000);
             this.callCollection = this.callCollection.bind(this);
         }
     }, {
@@ -75,6 +75,8 @@ Praise.removeElement = function (ele, parentElement) {
 Praise.count = function () {
     if (++Praise._praiseCount >= 9) {
         Praise._disable = true;
+        return false;
     }
+    return true;
 };
 //# sourceMappingURL=main.js.map
