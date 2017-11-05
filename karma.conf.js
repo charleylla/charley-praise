@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Nov 01 2017 22:11:53 GMT+0800 (中国标准时间)
+// Generated on Sun Nov 05 2017 16:19:33 GMT+0800 (中国标准时间)
 
 module.exports = function(config) {
   config.set({
@@ -15,8 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      "./src/*.js",
-      "./test/*.spec.js"
+      './src/**/*.js',
+      './test/**/*.spec.js',
     ],
 
 
@@ -28,14 +28,51 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './src/**/*.js':['webpack'],
+      './test/**/*.spec.js':['webpack']
     },
 
+    webpack:{
+      module: {
+        rules: [{
+          test: /\.js$/,
+          use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true }
+          },
+          enforce: 'pre',
+          exclude: /node_modules|\.spec\.js$/,
+        },
+        {
+          test: /\.js$/,
+          use: {
+              loader: 'babel-loader',
+              options: {
+                  presets: ['env'],
+                  plugins: ['istanbul']
+              }
+            },
+            exclude: /node_modules/
+        }]
+      }
+    },
+    
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
+    reporters: ['coverage-istanbul'],
+    coverageIstanbulReporter: {
+      reports: ['html', 'text-summary'],
+      dir: 'coverage/',
+      fixWebpackSourcePaths: true,
+      skipFilesWithNoCoverage: true,
+      'report-config': {
+        html: {
+          subdir: 'html'
+        }
+      }
+    },
 
     // web server port
     port: 9876,
@@ -56,7 +93,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

@@ -1,15 +1,25 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _utils = require("./utils.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Praise = function () {
-    function Praise(box, palm) {
+    function Praise(box, palm, maxCount) {
         _classCallCheck(this, Praise);
 
         this.box = box;
         this.palm = palm;
+        this.maxCount = maxCount;
+        this._praiseCount = 0;
         this._init();
         this.bindEvents();
     }
@@ -18,25 +28,49 @@ var Praise = function () {
         key: "_init",
         value: function _init() {
             this.bindEvents = this.bindEvents.bind(this);
-            this.clickHander = Utils.throttle(this.clickHander.bind(this), 1000);
+            this.clickHander = (0, _utils.throttle)(this.clickHander.bind(this), 300);
             this.callCollection = this.callCollection.bind(this);
+        }
+    }, {
+        key: "count",
+        value: function count() {
+            ++this._praiseCount;
+            /**
+             * 数组第一项用来控制手掌是否置灰（1表示置灰，0表示不置灰）
+             * 数组第二项用来控制是否显示+1（1表示显示，0表示不显示）
+             */
+            if (this._praiseCount === this.maxCount) {
+                this._praiseCount = 0;
+                return [1, 1];
+            }
+
+            console.log(this._praiseCount);
+            return [0, 1];
         }
     }, {
         key: "clickHander",
         value: function clickHander(e) {
             var _this = this;
 
-            if (Praise._disable) {
+            var _count = this.count(),
+                _count2 = _slicedToArray(_count, 2),
+                _disableFlag = _count2[0],
+                _countFlag = _count2[1];
+
+            if (_disableFlag) {
                 this.box.className = "disable";
-                return;
+            } else {
+                this.box.className = "";
             }
-            var numberEle = Praise.createPraiseNumberElement();
-            this.box.appendChild(numberEle);
-            setTimeout(function () {
-                numberEle.className = "number number-move";
-                _this.callCollection(numberEle);
-                Praise.count();
-            }, 50);
+
+            if (_countFlag) {
+                var numberEle = createPraiseNumberElement();
+                this.box.appendChild(numberEle);
+                setTimeout(function () {
+                    numberEle.className = "number number-move";
+                    _this.callCollection(numberEle);
+                }, 50);
+            }
         }
     }, {
         key: "callCollection",
@@ -44,7 +78,7 @@ var Praise = function () {
             var _this2 = this;
 
             setTimeout(function () {
-                Praise.removeElement(element, _this2.box);
+                removeElement(element, _this2.box);
             }, 500);
         }
     }, {
@@ -57,26 +91,18 @@ var Praise = function () {
     return Praise;
 }();
 
-Praise._praiseCount = 0;
-Praise._disable = false;
+exports.default = Praise;
 
-Praise.createPraiseNumberElement = function () {
+
+function createPraiseNumberElement() {
     var box = document.createElement("div");
     box.className = "number";
     box.innerHTML = "+1";
     return box;
-};
+}
 
-Praise.removeElement = function (ele, parentElement) {
+function removeElement(ele, parentElement) {
     parentElement.removeChild(ele);
     ele = null;
-};
-
-Praise.count = function () {
-    if (++Praise._praiseCount >= 9) {
-        Praise._disable = true;
-        return false;
-    }
-    return true;
-};
+}
 //# sourceMappingURL=main.js.map
