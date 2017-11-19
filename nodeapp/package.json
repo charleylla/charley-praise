@@ -1,0 +1,27 @@
+{
+  "name": "charley-praise-koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "koa": "^2.4.1",
+    "koa-simple-router": "^0.2.0",
+    "koa2-cors": "^2.0.5",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
+  }
+}

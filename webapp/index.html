@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>charley-parise</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <section>
+        <div class="main" id="box">
+            <div class="finger"></div>
+            <div class="finger"></div>
+        </div>
+    </section>
+</body>
+<script>
+        System.config({
+            baseURL:"./"
+        })
+
+        System.import("./build/main.js").then((module) => {
+            // 从编译后的文件中引入 Praise 类
+            const Praise = module.default;
+            const box = document.querySelector("section");
+            const palm = document.querySelector(".main");
+            // 启用点赞功能
+            const praise = new Praise(box,palm,10)
+        });
+    </script>
+</html>
