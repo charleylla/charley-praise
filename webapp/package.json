@@ -35,6 +35,7 @@
   "scripts": {
     "build": "babel ./src -d ./build -s",
     "test": "karma start",
+    "e2e": "cd ./test && node e2e",
     "serve": "http-server -p 8888 -o"
   },
   "repository": {

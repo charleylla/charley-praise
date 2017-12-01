@@ -27,11 +27,14 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // 对源文件和测试文件都使用 webpack 进行处理
+    // 我们单元测试的时候是测试的原始文件,因此这里对源文件要进行处理
     preprocessors: {
       './src/**/*.js':['webpack'],
       './test/**/*.spec.js':['webpack']
     },
-
+    // 使用 webpack 插件,用来处理 ES6 写法
+    // 包括源文件和测试文件中的 ES6 语法
     webpack:{
       module: {
         rules: [{
@@ -61,6 +64,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    // 配置代码覆盖率
     reporters: ['coverage-istanbul'],
     coverageIstanbulReporter: {
       reports: ['html', 'text-summary'],
