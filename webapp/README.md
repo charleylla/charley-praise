@@ -29,4 +29,4 @@ npm run e2e
 ```
 npm run serve
 ```
-注：进行 E2E 测试时，需要先开启服务器环境预览。
+注：进行 E2E 测试时，需要先开启服务器环境预览（```npm run serve```）。
