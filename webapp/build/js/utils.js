@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 // 节流函数
 function throttle(fn, delay) {
-    var startTime = 0;
-    return function () {
-        var timeNow = +new Date();
+    let startTime = 0;
+    return (...args) => {
+        let timeNow = +new Date();
         if (timeNow - startTime >= delay) {
-            fn.apply(undefined, arguments);
+            fn(...args);
             startTime = timeNow;
         }
     };
@@ -17,7 +17,7 @@ function throttle(fn, delay) {
 
 // 生成一个元素
 function createPraiseNumberElement() {
-    var box = document.createElement("div");
+    const box = document.createElement("div");
     box.className = "number";
     box.innerHTML = "+1";
     return box;

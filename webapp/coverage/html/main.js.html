@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60.71% </span>
+        <span class="strong">54.55% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/28</span>
+        <span class='fraction'>18/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">36.36% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>4/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60.71% </span>
+        <span class="strong">54.55% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/28</span>
+        <span class='fraction'>18/33</span>
       </div>
     </div>
   </div>
@@ -160,13 +160,7 @@
 115
 116
 117
-118
-119
-120
-121
-122
-123
-124</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+118</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,6 +184,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,18 +226,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -250,22 +235,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,6 +267,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -315,6 +303,7 @@ export default class Praise{
         // clickHander 用来对点击事件进行处理，使用节流函数包装
         this.clickHander = throttle(this.clickHander.bind(this),500);
         this.callCollection = this.callCollection.bind(this)
+        this.update = this.update.bind(this);
     }
 &nbsp;
     // 用来进行点赞记数
@@ -352,6 +341,8 @@ export default class Praise{
     }
     
 <span class="fstat-no" title="function not covered" >    cl</span>ickHander(e){
+        // 更新数据
+<span class="cstat-no" title="statement not covered" >        this.update();</span>
         // flag 是手型是否置灰的标志
         const flag = <span class="cstat-no" title="statement not covered" >this.count();</span>
 <span class="cstat-no" title="statement not covered" >        if(!flag){</span>
@@ -371,33 +362,6 @@ export default class Praise{
             // 元素展示后,将其传入 callCollection 方法,定时回收
 <span class="cstat-no" title="statement not covered" >            this.callCollection(numberEle);</span>
         },50);
-&nbsp;
-        // 以下为原始代码
-        // const [ _disableFlag, _countFlag] = this.count();
-        // // _disableFlag 用来判断是否将手型置灰
-        // if(_disableFlag){
-        //     this.box.className = "disable";
-        // }else{
-        //     this.box.className="";
-        // }
-&nbsp;
-        // // _countFlag 用来判断是否展示 +1 动画
-        // // 当点赞数达到最大数目时，需要 +1 动画显示，手型置灰
-        // if(_countFlag){
-        //     // 生成一个 +1 的元素
-        //     const numberEle = createPraiseNumberElement();
-        //     // 将元素追加到容器中
-        //     this.box.appendChild(numberEle);
-        //     // 50ms 后改变样式，以获取动画效果
-        //     // 如果上来就将 className 设置为 number number-move,是不会有动画效果的
-        //     setTimeout(()=&gt;{
-        //         numberEle.className = "number number-move";
-        //         // 元素展示后,将其传入 callCollection 方法,定时回收
-        //         this.callCollection(numberEle);
-        //     },50);
-        // }
-&nbsp;
-&nbsp;
     }
 &nbsp;
     // 该方法用来定时清除生成的 +1 元素，接受容器元素 box 作为参数
@@ -406,6 +370,24 @@ export default class Praise{
 <span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >()</span>=&gt;{</span>
 <span class="cstat-no" title="statement not covered" >            removeElement(element,this.box);</span>
         },1000)
+    }
+&nbsp;
+    // 对 PhantomJS 做出的一些妥协
+    // async update(){
+    //     try{
+    //         const res = await axios.get("/index/update")  
+    //         console.log(res.data)
+    //     }catch(e){
+    //         console.log("更新数据失败！")
+    //     }
+    // }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    up</span>date(){
+<span class="cstat-no" title="statement not covered" >        axios.get("/index/update").then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(res.data)</span>
+        }).cat(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
+<span class="cstat-no" title="statement not covered" >            console.log("更新数据失败！")</span>
+        })
     }
 &nbsp;
     // 绑定事件
@@ -418,7 +400,7 @@ export default class Praise{
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 01 2017 14:55:25 GMT+0800 (中国标准时间)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 21:37:05 GMT+0800 (CST)
 </div>
 </div>
 <script src="prettify.js"></script>

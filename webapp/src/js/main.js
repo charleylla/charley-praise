@@ -24,6 +24,7 @@ export default class Praise{
         // clickHander 用来对点击事件进行处理，使用节流函数包装
         this.clickHander = throttle(this.clickHander.bind(this),500);
         this.callCollection = this.callCollection.bind(this)
+        this.update = this.update.bind(this);
     }
 
     // 用来进行点赞记数
@@ -61,6 +62,8 @@ export default class Praise{
     }
     
     clickHander(e){
+        // 更新数据
+        this.update();
         // flag 是手型是否置灰的标志
         const flag = this.count();
         if(!flag){
@@ -80,33 +83,6 @@ export default class Praise{
             // 元素展示后,将其传入 callCollection 方法,定时回收
             this.callCollection(numberEle);
         },50);
-
-        // 以下为原始代码
-        // const [ _disableFlag, _countFlag] = this.count();
-        // // _disableFlag 用来判断是否将手型置灰
-        // if(_disableFlag){
-        //     this.box.className = "disable";
-        // }else{
-        //     this.box.className="";
-        // }
-
-        // // _countFlag 用来判断是否展示 +1 动画
-        // // 当点赞数达到最大数目时，需要 +1 动画显示，手型置灰
-        // if(_countFlag){
-        //     // 生成一个 +1 的元素
-        //     const numberEle = createPraiseNumberElement();
-        //     // 将元素追加到容器中
-        //     this.box.appendChild(numberEle);
-        //     // 50ms 后改变样式，以获取动画效果
-        //     // 如果上来就将 className 设置为 number number-move,是不会有动画效果的
-        //     setTimeout(()=>{
-        //         numberEle.className = "number number-move";
-        //         // 元素展示后,将其传入 callCollection 方法,定时回收
-        //         this.callCollection(numberEle);
-        //     },50);
-        // }
-
-
     }
 
     // 该方法用来定时清除生成的 +1 元素，接受容器元素 box 作为参数
@@ -115,6 +91,24 @@ export default class Praise{
         setTimeout(()=>{
             removeElement(element,this.box);
         },1000)
+    }
+
+    // 对 PhantomJS 做出的一些妥协
+    // async update(){
+    //     try{
+    //         const res = await axios.get("/index/update")  
+    //         console.log(res.data)
+    //     }catch(e){
+    //         console.log("更新数据失败！")
+    //     }
+    // }
+
+    update(){
+        axios.get("/index/update").then(res => {
+            console.log(res.data)
+        }).cat(err => {
+            console.log("更新数据失败！")
+        })
     }
 
     // 绑定事件
