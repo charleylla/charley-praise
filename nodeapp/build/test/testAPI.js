@@ -4,12 +4,13 @@ var _supertest = require("supertest");
 
 var _supertest2 = _interopRequireDefault(_supertest);
 
-var _app = require("../app");
+var _app = require("../src/app");
 
 var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// 这里使用了 app 监听的端口
 // 使用 supertest 进行接口测试
 function request() {
     return (0, _supertest2.default)(_app2.default.listen());

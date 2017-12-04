@@ -1,3 +1,50 @@
+2017/12/04 新增
+## 引入 Web Components，并进行代码的工程化配置
+## Features
+- 使用 gulp 编译 Node 代码
+- 使用 webpack 编译原 webapp 代码，区分开发和生产环境
+- 使用 better-npm-run 做环境变量管理
+- 引入 x-tags
+- 去除 SystemJS，改用 webpack 自动加载模块
+- 自动生成 HTML
+- 更好的模板继承
+- 对插入到自动生成的 HTML 的 css 和 js 文件进行处理，确保插入到正确的位置
+- Node 项目区分开发环境和生产环境
+- 将 test 目录移动到 src 目录下
+
+## 新增命令
+1.开发环境调试前端代码
+```
+npm run webpackdev
+```
+2.生产环境调试前端代码
+```
+npm run webpackprod
+```
+3.启用 gulp 持续化编译 Node 代码
+```
+npm run gulp
+```
+4.启动 node 服务
+```
+npm run start
+```
+## 架构分析
+### 工程化构建
+前端代码采用 webpack 进行构建，后端代码采用 gulp 进行构建。并区分了开发和生产环境。
+将原始的目录进行了改进，将源码收入到 src 目录下，编译后的代码收入到 build 目录下，结构更为清晰。
+### 前端工程化说明
+1.去除 SystemJS 手动引用模块，改为自动生成 HTML 文件，并插入 css 和 js 代码
+
+2.自动提取 css 文件，以及自动抽取公共 js 代码
+
+3.新增了 widget 目录，在 src 目录中作为原始的 views 目录的功能，即提供模板文件
+
+4.对原始的 views 目录进行修改，利用 widget 目录中的文件生成 HTML，并优化代码格式
+
+5.编译后生成 build 目录，该目录下的 views 目录和之前的作用一样，模板文件从该目录下引用（区别于 src 目录，模板文件从 widget 中引用），具体可查看相应的 webpack 配置和其他相关文件。
+
+----
 ## 使用 Node 做点赞功能的中间层
 ## Features
 - 使用 ES6 语法

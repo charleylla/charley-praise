@@ -11,12 +11,14 @@ module.exports = {
     // 入口文件
     entry: {
         tags: [
-            path.resolve(__dirname, "../src/public/js/tags.es")
+            path.resolve(__dirname, "../src/public/js/tags.js")
         ]
     },
     // 输出的路径
     output: {
         filename: "public/js/[name]-[hash:16].js",
+        // 该路径可看作是所有 output 的模板位置，最好写一个目录，而不是具体的 js 文件目录
+        // 这个目录是整体意义上的
         path: path.resolve(__dirname, "../build")
     },
     // 配置 loader
@@ -24,7 +26,7 @@ module.exports = {
         rules: [
             // 配置 babel-loader
             {
-                test: /\.es$/,
+                test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
@@ -46,11 +48,13 @@ module.exports = {
     },
     plugins: [
         // 定义环境变量
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: "dev"
-            }
-        }),
+        // 由于我们在 package.json 中使用 better-npm-run 定义了环境变量
+        // 因此此处是不是需要再定义环境变量的
+        // new webpack.DefinePlugin({
+        //     "process.env": {
+        //         NODE_ENV: "dev"
+        //     }
+        // }),
         // 配置 LiveReloadPlugin 插件
         // 注：该插件依赖 livereload 浏览器插件
         new LiveReloadPlugin({

@@ -1,4 +1,11 @@
-import Praise from "./main.es";
+"use strict";
+
+var _main = require("./main");
+
+var _main2 = _interopRequireDefault(_main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // 注册一个 x-praise 点赞组件
 xtag.register("x-praise", {
   content: `
@@ -12,17 +19,15 @@ xtag.register("x-praise", {
     `,
   lifecycle: {
     created() {
-      console.warn("X-Tag has been created.")
+      console.warn("X-Tag has been created.");
     },
     inserted() {
-      console.warn("X-Tag has been inserted.")
+      console.warn("X-Tag has been inserted.");
       const box = document.querySelector("section");
       const palm = document.querySelector(".main");
       // 启用点赞功能
-      new Praise(box,palm,10)
-    },
+      new _main2.default(box, palm, 10);
+    }
   },
-  methods:{
-    
-  }
+  methods: {}
 });

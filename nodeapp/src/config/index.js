@@ -10,6 +10,5 @@ CONFIG.set("VIEWS_DIR",path.resolve(__dirname,"../views"));
 // 原始路径
 // CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../public"));
 CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../"));
-console.log(path.resolve(__dirname,"../"))
 
 export default CONFIG;

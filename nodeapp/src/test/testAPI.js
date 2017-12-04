@@ -1,6 +1,6 @@
 // 使用 supertest 进行接口测试
 import supertest from "supertest";
-import app from "../app"
+import app from "../src/app"
 
 // 这里使用了 app 监听的端口
 function request(){

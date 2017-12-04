@@ -15,13 +15,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './src/**/*.js',
-      './test/**/*.spec.js',
+      './src/public/**/*.js',
+      './src/test/**/*.spec.js',
     ],
 
 
     // list of files to exclude
     exclude: [
+      './src/public/js/tags.js'
     ],
 
 
@@ -30,8 +31,8 @@ module.exports = function(config) {
     // 对源文件和测试文件都使用 webpack 进行处理
     // 我们单元测试的时候是测试的原始文件,因此这里对源文件要进行处理
     preprocessors: {
-      './src/**/*.js':['webpack'],
-      './test/**/*.spec.js':['webpack']
+      './src/public/**/*.js':['webpack'],
+      './src/test/**/*.spec.js':['webpack']
     },
     // 使用 webpack 插件,用来处理 ES6 写法
     // 包括源文件和测试文件中的 ES6 语法
@@ -44,7 +45,7 @@ module.exports = function(config) {
               options: { esModules: true }
           },
           enforce: 'pre',
-          exclude: /node_modules|\.spec\.js$/,
+          exclude: /node_modules|\.spec\.es$/,
         },
         {
           test: /\.js$/,
@@ -56,7 +57,13 @@ module.exports = function(config) {
               }
             },
             exclude: /node_modules/
-        }]
+        },{
+          test: /\.css$/,
+          use: {
+              loader: 'css-loader',
+          },
+          exclude: /node_modules$/,
+        },]
       }
     },
     

@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "e2e": "cd test && node e2e.js",
-    "supertest": "cd test && mocha testAPI.js",
+    "e2e": "cd src/test && node e2e.js",
+    "supertest": "cd src/test && mocha testAPI.js",
     "webpackdev": "better-npm-run webpack:dev",
-    "webpackprod": "better-npm-run webpack:prod"
+    "webpackprod": "better-npm-run webpack:prod",
+    "start":"node build/app",
+    "gulp":"gulp"
   },
   "betterScripts": {
     "webpack:dev": {

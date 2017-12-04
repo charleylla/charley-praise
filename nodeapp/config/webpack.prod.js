@@ -13,7 +13,7 @@ module.exports = {
     // 入口文件
     entry: {
         tags: [
-            path.resolve(__dirname, "../src/public/js/tags.es")
+            path.resolve(__dirname, "../src/public/js/tags.js")
         ]
     },
     // 输出的路径
@@ -26,7 +26,7 @@ module.exports = {
         rules: [
             // 配置 babel-loader
             {
-                test: /\.es$/,
+                test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
@@ -47,11 +47,11 @@ module.exports = {
     },
     plugins: [
         // 定义环境变量
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: "prod"
-            }
-        }),
+        // new webpack.DefinePlugin({
+        //     "process.env": {
+        //         NODE_ENV: "prod"
+        //     }
+        // }),
         // 压缩 js 代码
         new webpack.optimize.UglifyJsPlugin({
             compress: {
