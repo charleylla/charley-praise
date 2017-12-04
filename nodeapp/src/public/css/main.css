@@ -1,0 +1,115 @@
+html,body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section{
+    background: #b3cab0;
+    width:700px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+}
+
+.main{
+    width: 160px;
+    height: 184px;
+    border-radius:16px;
+    background: #fec9a9;
+    border:1px solid #97836b;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left:96px;
+    margin-bottom:96px;
+    position: relative;
+}
+
+.main::before{
+    content:"";
+    display: block;
+    width: 124px;
+    height: 124px;
+    background: inherit;
+    border-top:1px solid #97836b;
+    margin-left:-112px;
+}
+
+.main::after{
+    content:"";
+    display: block;
+    width:100px;
+    height:47px;
+    background:inherit;
+    border:1px solid #97836b;
+    border-left:0;
+    border-bottom: 0;
+    border-radius: 24px;
+    border-top-left-radius: 0;
+    align-self: flex-start;
+    transform: rotate(-45deg) translateY(-28px) translateX(34px);
+    box-shadow:-12px 4px 19px -7px #fee6da inset, -55px 4px 14px -47px #fee6da inset;
+}
+
+.finger{
+    width: 47px;
+    position: absolute;
+    right: -20px;
+    top:-1px;
+}
+.finger:last-of-type{
+    top:92px;
+}
+.finger:after,.finger:before{
+    content:"";
+    display: block;
+    width: 100%;
+    height: 47px;
+    box-sizing: border-box;
+    border:1px solid #97836b;
+    border-left:0;
+    border-bottom:0;
+    border-top-right-radius: 23px;
+    border-bottom-right-radius: 23px;
+    background: inherit;
+    background: #fec9a9;
+    box-shadow: -12px 4px 19px -7px #fee6da inset
+}
+
+.finger:last-of-type:after{
+    border-bottom:1px solid #97836b;
+    height: 46px;
+}   
+
+/* +1 的动画效果就是在这两个类中起效果的 */
+.number{
+    position: absolute;
+    left: 50%;
+    top:40%;
+    font-size: 50px;
+    color:red;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all cubic-bezier(.31,.6,.17,.74) .5s;
+}
+
+.number-move{
+    left:70%;
+    top:20%;
+    font-size: 70px;
+    opacity: 0;
+}
+
+/* ---------------------- 置灰 --------------------- */
+.disable .main,
+.disable .main .finger:after,
+.disable .main .finger:before
+{
+    background:rgb(212, 193, 193);
+}
