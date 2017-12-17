@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.Star = exports.Thumb = undefined;
 
 require("../css/main.css");
 
@@ -106,6 +107,21 @@ class Praise {
         this.palm.addEventListener("mouseup", this.clickHander);
     }
 }
-exports.default = Praise;
 
 // 从 utils 中引入相关的方法
+
+class Thumb extends Praise {
+    constructor(box, palm, maxCount) {
+        console.log(box, palm, maxCount);
+        super(box, palm, maxCount);
+    }
+}
+
+class Star extends Praise {
+    constructor(box, palm, maxCount) {
+        super(box, palm, maxCount);
+    }
+}
+
+exports.Thumb = Thumb;
+exports.Star = Star;

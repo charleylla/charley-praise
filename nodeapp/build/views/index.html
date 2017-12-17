@@ -1,13 +1,32 @@
 
         {% extends "./layout.html" %}
-        {% block title %}My Page{% endblock %}
+        {% block title %}点赞组件{% endblock %}
         {% block styles %}
-            <link rel="stylesheet" type="text/css" href="../public/css/main-8eb2e455ac139462.css"/>
+            <link rel="stylesheet" type="text/css" href="../public/css/main-4287761a09a21ffb.css"/>
         {% endblock %}
         {% block content %}
             {% include "../widget/index.html" %}
         {% endblock %}
         {% block script %}
-            <script type='text/javascript'  src='../public/js/common/vendor-8eb2e455ac139462.js'></script><script type='text/javascript'  src='../public/js/tags-8eb2e455ac139462.js'></script>
+        
+            <script>
+                const scriptsList = ["../public/js/common/vendor-4287761a09a21ffb.js","../public/js/tags-4287761a09a21ffb.js"];
+                scriptsList.forEach((v,k) => {
+                    if(localStorage.getItem(v)){
+                        const scriptTag = document.createElement("script");
+                        scriptTag.innerHTML = localStorage.getItem(v);
+                        document.head.appendChild(scriptTag);
+                    }else{
+                        localStorage.clear();
+                        $.getScript({
+                            url:v,
+                            success(data){
+                                localStorage.setItem(v,data);
+                            }
+                        })
+                    }
+                });
+            </script>
+        
         {% endblock %}
     

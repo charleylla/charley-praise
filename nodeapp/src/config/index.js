@@ -8,8 +8,8 @@ CONFIG.set("PORT",3000);
 CONFIG.set("VIEWS_DIR",path.resolve(__dirname,"../views"));
 // 定义静态资源路径
 // 原始路径
-CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../public"));
-// CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../"));
+// CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../public"));
+CONFIG.set("PUBLIC_DIR",path.resolve(__dirname,"../"));
 /**
  * 为什么这里需要修改路径呢？
  * 这是因为我们在使用 webpack 进行编译的时候，将静态资源的目录设置为 build：

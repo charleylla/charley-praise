@@ -3611,6 +3611,10 @@ lodash@~1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-1.0.2.tgz#8f57560c83b59fc270bd3d561b690043430e2551"
 
+lodash@~4.13.1:
+  version "4.13.1"
+  resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.13.1.tgz#83e4b10913f48496d4d16fec4a560af2ee744b68"
+
 log4js@^0.6.31:
   version "0.6.38"
   resolved "http://registry.npm.taobao.org/log4js/download/log4js-0.6.38.tgz#2c494116695d6fb25480943d3fc872e662a522fd"
@@ -5912,6 +5916,12 @@ webpack-livereload-plugin@^1.0.0:
   resolved "http://registry.npm.taobao.org/webpack-livereload-plugin/download/webpack-livereload-plugin-1.0.0.tgz#c197397ebe2a922d91da81642e000eb52c949299"
   dependencies:
     tiny-lr "^0.2.0"
+
+webpack-manifest@^1.0.8:
+  version "1.0.8"
+  resolved "http://registry.npm.taobao.org/webpack-manifest/download/webpack-manifest-1.0.8.tgz#fff2a0970e5aee4c9e1431a19aa9c5866953f0dc"
+  dependencies:
+    lodash "~4.13.1"
 
 webpack-sources@^1.0.1:
   version "1.1.0"

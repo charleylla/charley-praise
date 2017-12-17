@@ -24,6 +24,9 @@ class InitController {
         app.use(router(_ => {
             _.get("/index/index", _indexController2.default.index());
             _.get("/index/update", _indexController2.default.update());
+            _.get("/index/praise", _indexController2.default.praise());
+            _.get("/index/praise-cpy", _indexController2.default.praiseCpy());
+            _.get("/index/media", _indexController2.default.media());
         }));
     }
 }

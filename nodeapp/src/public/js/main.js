@@ -9,7 +9,7 @@ import {
 } from "./utils";
 
 // 定义点赞类
-export default class Praise{
+class Praise{
     // 构造方法，接受三个参数：容器元素、点赞元素和最大点赞数
     constructor(box,palm,maxCount){
         this.box = box;
@@ -104,4 +104,21 @@ export default class Praise{
     bindEvents(){
         this.palm.addEventListener("mouseup",this.clickHander)
     }
+}
+class Thumb extends Praise{
+    constructor(box,palm,maxCount){
+        console.log(box,palm,maxCount)
+        super(box,palm,maxCount)
+    }
+}
+
+class Star extends Praise{
+    constructor(box,palm,maxCount){
+        super(box,palm,maxCount)
+    }
+}
+
+export {
+    Thumb,
+    Star
 }

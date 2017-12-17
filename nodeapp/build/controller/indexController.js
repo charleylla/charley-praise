@@ -28,6 +28,32 @@ const index = {
             // 等待数据获取
             ctx.body = await indexModel.update();
         };
+    },
+    praise() {
+        return async (ctx, next) => {
+            // 这里需要进行请求头的判断
+            // 如果直接渲染标签，在刷新浏览器后是空白的
+            // 因此要根据是否是 Pjax 请求决定返回整个页面还是标签
+            if (ctx.request.header["x-pjax"]) {
+                ctx.body = "<x-praise></x-praise>";
+            } else {
+                ctx.body = await ctx.render("index.html");
+            }
+        };
+    },
+    praiseCpy() {
+        return async (ctx, next) => {
+            if (ctx.request.header["x-pjax"]) {
+                ctx.body = "<x-praise-cpy></x-praise-cpy>";
+            } else {
+                ctx.body = await ctx.render("star.html");
+            }
+        };
+    },
+    media() {
+        return async (ctx, next) => {
+            ctx.body = "<div style='height:150px;width:100%;background:blue'>大幅广告。。。</div>";
+        };
     }
 }; // 引入 IndexModel
 exports.default = index;

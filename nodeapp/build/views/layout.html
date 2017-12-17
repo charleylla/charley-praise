@@ -1,19 +1,53 @@
 <!doctype html>
-<html>
+<html manifest="/cache.manifest">
 <head>
     <meta charset="utf-8">
+    <!-- 加上这个头，表示开启 DNS 预解析 -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
     <title>{% block title %}My Site{% endblock %}</title>
 
     {% block head %}
         <!-- public scripts -->
+        <!-- 对 cdn.bootcss.com 进行 DNS 预解析 -->
+        <link rel="dns-prefetch" href="//cdn.bootcss.com">
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
         <script src="https://cdn.bootcss.com/x-tag/1.5.11/x-tag-core.js"></script>
+        <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+        <script src="https://cdn.bootcss.com/localforage/1.5.5/localforage.min.js"></script>
+        <!-- <script src="https://cdn.bootcss.com/lazyload/2.0.3/lazyload-min.js"></script> -->
     {% endblock %}
     <!-- styles -->
     {% block styles %}{% endblock %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <!-- 此处定义路由，然后在 nodeapp 的 indexController 中注册路由 -->
+    <!-- 似乎不能把这个路由写在 main-container 中，会导致跳转后看不到链接 -->
+    <!-- 切换路由后原先的页面会被卸载，计数从头开始 -->
+    <nav>
+        <a href="/index/praise">原始点赞</a>
+        <a href="/index/praise-cpy">原始点赞副本</a>
+    </nav>
+    <div id="main-container">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- 对 main-container 下的 a 进行 pjax 处理 -->
+    <script>
+        $(document).pjax("a","#main-container")
+        localforage.getItem("media",(err,value)=>{
+            if(!value){
+                $.ajax({
+                    url:"/index/media",
+                    success(data){
+                        localforage.setItem("media",data)
+                        $("body").prepend(data)
+                    } 
+                })
+            }else{
+                $("body").prepend(value)
+            }
+        })
+    </script>
 </body>
 <!-- scripts -->
 {% block script %}{% endblock %}

@@ -25,10 +25,12 @@ gulp.task("HandleJS",() => {
         .pipe(gulp.dest("./build"));
 });
 
-// 创建 default 任务，在该任务中需要先执行 HandleJS 任务
-gulp.task("default",["HandleJS"],() => {
-    // 监控文件变化，实现自动编译
-    // 同样，这里对前端的代码不做监控
-    // 在文件发生变化后，执行 HandleJS 任务
-    gulp.watch(["./src/**/*.js","!./src/public/*.js"],["HandleJS"]);
-})
+// // 创建 default 任务，在该任务中需要先执行 HandleJS 任务
+// gulp.task("default",["HandleJS"],() => {
+//     // 监控文件变化，实现自动编译
+//     // 同样，这里对前端的代码不做监控
+//     // 在文件发生变化后，执行 HandleJS 任务
+//     gulp.watch(["./src/**/*.js","!./src/public/*.js"],["HandleJS"]);
+// })
+
+gulp.task("default",["HandleJS"]);

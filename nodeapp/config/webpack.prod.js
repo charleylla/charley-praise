@@ -1,25 +1,30 @@
 const path = require("path")
 const webpack = require("webpack")
-// 引入 webpack-livereload-plugin 插件
-const LiveReloadPlugin = require("webpack-livereload-plugin");
 // 引入 extract-text-webpack-plugin 插件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // 引入 optimize-css-assets-webpack-plugin 插件
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // 引入 html-webpack-plugin 插件
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-
+// 引入 webpack-manifest
+const Manifest = require("webpack-manifest");
 module.exports = {
     // 入口文件
     entry: {
         tags: [
-            path.resolve(__dirname, "../src/public/js/tags.js")
+            path.resolve(__dirname, "../src/public/js/tags.js"),
+            path.resolve(__dirname, "../src/public/js/star.js")
         ]
     },
     // 输出的路径
     output: {
         filename: "public/js/[name]-[hash:16].min.js",
-        path: path.resolve(__dirname, "../build")
+        path: path.resolve(__dirname, "../build"),
+        // 上线时，配置 CDN 的地址～
+        // 启用 CDN 后，再使用 localhost 访问文件会有跨域问题
+        // 导致 $.getScript 获取的数据为 undefined
+        // 因此需要使用 ip 地址访问
+        publicPath:"http://192.168.1.105:3000/"
     },
     // 配置 loader
     module: {
@@ -103,6 +108,56 @@ module.exports = {
             filename: "./widget/index.html",
             template: "src/widget/index.html",
             inject:false,
+        }),
+        new HTMLWebpackPlugin({
+            filename: "./views/star.html",
+            template: "src/views/star.js",
+            inject:false,
+            chunks:["vendor","tags"]
+        }),
+        new HTMLWebpackPlugin({
+            filename: "./widget/star.html",
+            template: "src/widget/star.html",
+            inject:false,
+        }),
+        // 配置离线缓存
+        new Manifest({
+            cache: [
+                // 配置缓存的文件
+                // prod 环境下的文件名变了
+                "../public/js/common/vendor-[hash:16].min.js",
+                "../public/js/tags-[hash:16].min.js",
+                "../public/css/main-[hash:16].min.css"
+            ],
+            //Add time in comments. 
+            timestamp: true,
+            // 生成的文件名字，选填 
+            // The generated file name, optional. 
+            filename:"cache.manifest", 
+            // 注意*星号前面用空格隔开 
+            network: [
+                // // 不缓存的文件 
+                // // 不缓存 bootcdn
+                // "https://cdn.bootcss.com/ *",
+                // // 不缓存 livereload
+                // "http://localhost:35729/ *"
+
+                // 这里好像固定写有问题，提示找不到文件啥的（不支持 HTTPS？）
+                // 因此我在这里禁止缓存所有域下的文件
+                // 然后在 cache 中缓存用到的文件即可
+
+                // 这时我们断开 NODE 服务，仍然会从 CDN 上获取文件
+                // 此时再断网，哪些文件也就找不到了
+                // 因此最好将第三方的库也缓存下来
+
+                "*"
+            ],
+            // 注意中间用空格隔开 
+            // fallback: ["/ /404.html"],
+            // manifest 文件中添加注释 
+            // Add notes to manifest file. 
+            headcomment: "charley-praise", 
+            master: ["index/index.html"]
         })
     ]
 }
