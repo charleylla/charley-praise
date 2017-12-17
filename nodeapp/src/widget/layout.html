@@ -35,6 +35,8 @@
     <script>
         /**
          * PJAX：将多页应用转换成单页应用
+         * 不要使用 HASH 做 SPA
+         * 如果使用 HASH，某些搜索引擎（如百度）的 SEO 支持不好
          */
         $(document).pjax("a","#main-container")
         localforage.getItem("media",(err,value)=>{

@@ -1,3 +1,14 @@
+2017/12/17 新增
+## 对点赞页面进行性能优化
+## Features
+- 新增 x-praise-cpy 组件
+- 使用 PJAX 改造多页应用，做 SPA
+- Node 配合 PJAX，实现完整的 SPA
+- 配置 DNS 预解析
+- 使用 LocalStorage 缓存 JS，提高页面性能
+- 使用 IndexDB 存放广告图片，并采用 localForage 库实现 ORM，实现前端缓存的负载均衡
+- 生成环境配置 CDN
+
 2017/12/04 新增
 ## 引入 Web Components，并进行代码的工程化配置
 ## Features
