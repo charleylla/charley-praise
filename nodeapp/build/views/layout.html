@@ -33,6 +33,9 @@
     </div>
     <!-- 对 main-container 下的 a 进行 pjax 处理 -->
     <script>
+        /**
+         * PJAX：将多页应用转换成单页应用
+         */
         $(document).pjax("a","#main-container")
         localforage.getItem("media",(err,value)=>{
             if(!value){
